@@ -5,6 +5,9 @@ import styled from 'styled-components';
 const StyledTime = styled.p`
     font-size: 2rem;
 `
+const AlteraneStyledTime = styled.p(() => ({
+    'font-size': '3rem',
+}))
 
 const StyledButton = styled.button<{ active: boolean; color: string; }>`
     font-size: 2rem;
@@ -26,9 +29,9 @@ const Stopwatch: FC = () => {
     const formattedTime = useMemo(() => {
         const cents = (time + '').slice(-2);
         const whole = (time + '').slice(0, -2) || 0;
-        return `${whole}.${Number(cents) < 10 ? ('0' + cents) : cents}`;
+        return `${whole}.${cents}`;
     }, [time]);
-    
+
     return (
         <>
             <StyledTime>
